@@ -1,0 +1,225 @@
+body {
+  background-color: rgb(40, 41, 63);
+  overflow-x: hidden;
+}
+
+#canvasContainer {
+  position: relative;
+}
+
+section#mainContainer {
+  display: flex;
+}
+
+canvas#pizarra {
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-top: 50px;
+  cursor: crosshair;
+  position: relative;
+  z-index: 1;
+}
+
+canvas#secretCanvas {
+  position: absolute;
+}
+
+
+
+p {
+  text-transform: uppercase;
+  font-family: sans-serif;
+  color: white;
+}
+
+.foot {
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.parteSuperior {
+  padding: 2px;
+}
+
+.parteInferior {
+  padding: 2px;
+}
+/* 
+.derecha {
+  float: left;
+}
+
+.derecha-abajo {
+  float: left;
+} */
+
+button {
+  box-shadow: 0 7px 7px -7px #404040;
+  border-radius: 10px;
+  outline: none;
+  border:none;
+  margin-bottom: 5px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+}
+
+.activeButton {
+  border: 3px red solid;
+}
+
+button:hover {
+  border: 3px orange solid;
+  width: 105%;
+}
+
+button#triangle {
+  background-image: url("./images/Triangulo-transparente.gif");
+  background-color: whitesmoke;
+  padding: 30px;
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  padding: 30px;
+  opacity: 1;
+}
+
+button#manoLibre {
+  background-image: url("./images/draw-transparente.gif");
+  background-color: whitesmoke;
+  background-size: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  padding: 30px;
+  opacity: 1;
+}
+
+button#circle {
+  background-image: url("./images/shape_circle.jpg");
+  background-size: 50px;
+  background-color: whitesmoke;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  padding: 30px;
+  opacity: 1;
+}
+
+button#lineaRecta {
+  background-image: url("./images/Line-Transparente.gif");
+  background-color: whitesmoke;
+  background-size: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  padding: 30px;
+}
+
+button#erase {
+  background-image: url("./images/erase.jpg");
+  background-size: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  padding: 30px;
+  opacity: 1;
+}
+
+button#clearAll {
+  background-image: url("./images/delete.jpg");
+  background-size: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 50px;
+  padding: 30px;
+  opacity: 1;
+}
+
+button.bgColor {
+  height: 15px; 
+  width: 10px;
+}
+
+button.bgColor#bg-cyan {
+  background-color: rgb(185, 249, 249);
+}
+
+button.bgColor#bg-white {
+  background-color: white;
+}
+button.bgColor#bg-gray {
+  background-color: rgb(222, 222, 222);
+}
+button.bgColor#bg-green {
+  background-color: rgb(165, 245, 165);
+}
+button.bgColor#bg-red {
+  background-color: rgb(250, 164, 164);
+}
+button.bgColor#bg-pink {
+  background-color: rgb(252, 221, 226);
+}
+button.bgColor#bg-yellow {
+  background-color: rgb(252, 252, 179);
+}
+button.bgColor#bg-black {
+  background-color: black;
+}
+
+button.small-squares {
+  width: 30px; 
+  height: 30px; 
+}
+
+button.small-squares:hover {
+  width: 35px;
+  height: 35px;
+}
+
+button.big-square-color {
+  height: 25px; 
+  width: 25px; 
+  padding: 30px; 
+  margin-bottom:5px;
+}
+
+button.big-square-color:nth-of-type(1) {
+  background-color: red;
+}
+button.big-square-color:nth-of-type(2) {
+  background-color: green;
+}
+button.big-square-color:nth-of-type(3) {
+  background-color: black;
+}
+button.big-square-color:nth-of-type(4) {
+  background-color: yellow;
+}
+button.big-square-color:nth-of-type(5) {
+  background-color: pink;
+}
+button.big-square-color:nth-of-type(6) {
+  background-color: brown;
+}
+button.big-square-color:nth-of-type(7) {
+  background-color: white;
+}
+button.big-square-color:nth-of-type(8) {
+  background-color: blue;
+}
+
+
+.stroke {
+  height: 35px;
+}
+
+.footwork {
+  float: left;
+}

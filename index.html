@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>animate demo</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="jquery-3.4.1.js"></script>
+  </head>
+  <body>
+    <section id = "mainContainer">
+    <section class="foot">
+      <div class="parteSuperior">
+        <p>Colors</p>
+        <button
+          id="red"
+          class="big-square-color"
+        ></button>
+        <button
+          id="green"
+          class="big-square-color"
+        ></button
+        ><br />
+        <button
+          id="black"
+          class="big-square-color"
+        ></button>
+        <button
+          id="yellow"
+          class="big-square-color"
+        ></button>
+        <br />
+        <button
+          id="pink"
+          class="big-square-color"
+        ></button>
+        <button
+          id="brown"
+          class="big-square-color"
+        ></button
+        ><br />
+        <button
+          id="white"
+          class="big-square-color"
+        ></button>
+        <button
+          id="blue"
+          class="big-square-color"
+        ></button>
+        <br /><br />
+      </div>
+
+      <div class="footwork">
+        <p>Actual Color</p>
+        <button
+          id="colorActual"
+          class="small-squares"
+          style="background-color: black"
+        ></button>
+        <br /><br />
+        <p>Filled / No Filled</p>
+        <button
+          id="filled"
+          class="small-squares"
+          style="background-color: white"
+        ></button>
+      </div>
+    </section>
+
+    <div id = "canvasContainer">
+      <canvas id="pizarra"></canvas>
+      <canvas id = "secretCanvas"></canvas>
+    </div>
+
+    <div class="derecha">
+      <button id="clearAll"></button>
+      <button id="erase"></button> <br />
+      <p>Element</p>
+      <div class = "elements">
+        <button
+          id="triangle"
+          class = "element"
+          style="margin-bottom: 5px"
+        ></button>
+        <button
+          id="manoLibre"
+          class = "element"
+          style="margin-bottom: 5px"
+        ></button>
+        <br />
+        <button
+          id="lineaRecta"
+          class = "element"
+          style="margin-bottom: 5px"
+        ></button>
+        <button
+          id="circle"
+          class = "element"
+          style="margin-bottom: 5px"
+        ></button>
+      </div>
+
+      <p>Stroke size</p>
+      <button id="size-s" class="stroke">
+        <img src="./css/images/stroke.jpg" width="115px" height="1px" />
+      </button>
+      <br />
+      <button id="size-m" class="stroke">
+        <img src="./css/images/stroke.jpg" width="115px" height="7px" />
+      </button>
+      <br />
+      <button id="size-l" class="stroke">
+        <img src="./css/images/stroke.jpg" width="115px" height="12px" />
+      </button>
+      <br />
+      <button id="size-xl" class="stroke">
+        <img src="./css/images/stroke.jpg" width="115px" height="20px" />
+      </button>
+      <br />
+      <button id="size-xxl" class="stroke">
+        <img src="./css/images/stroke.jpg" width="115px" height="30px" />
+      </button>
+      <br />
+
+      <br />
+      <p>Background</p>
+      <button id="bg-cyan" class="bgColor"></button>
+      <button id="bg-black" class="bgColor"></button>
+      <button id="bg-yellow" class="bgColor"></button>
+      <button id="bg-pink" class="bgColor"></button> <br />
+      <button id="bg-red" class="bgColor"></button>
+      <button id="bg-green" class="bgColor"></button>
+      <button id="bg-white" class="bgColor"></button>
+      <button id="bg-gray" class="bgColor"></button>
+    </div>
+  </section>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="canvas.js"
+    ></script>
+  </body>
+</html>
