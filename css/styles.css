@@ -24,8 +24,6 @@ canvas#secretCanvas {
   position: absolute;
 }
 
-
-
 p {
   text-transform: uppercase;
   font-family: sans-serif;
@@ -44,20 +42,12 @@ p {
 .parteInferior {
   padding: 2px;
 }
-/* 
-.derecha {
-  float: left;
-}
-
-.derecha-abajo {
-  float: left;
-} */
 
 button {
   box-shadow: 0 7px 7px -7px #404040;
   border-radius: 10px;
   outline: none;
-  border:none;
+  border: 3px transparent solid;
   margin-bottom: 5px;
   transition: all 250ms ease-in-out;
   cursor: pointer;
@@ -69,7 +59,6 @@ button {
 
 button:hover {
   border: 3px orange solid;
-  width: 105%;
 }
 
 button#triangle {
@@ -125,15 +114,15 @@ button#erase {
   background-size: 50px;
   background-position: center;
   background-repeat: no-repeat;
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   padding: 30px;
   opacity: 1;
 }
 
 button#clearAll {
   background-image: url("./images/delete.jpg");
-  background-size: 50px;
+  background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
   height: 50px;
@@ -143,7 +132,7 @@ button#clearAll {
 }
 
 button.bgColor {
-  height: 15px; 
+  height: 15px;
   width: 10px;
 }
 
@@ -174,20 +163,15 @@ button.bgColor#bg-black {
 }
 
 button.small-squares {
-  width: 30px; 
-  height: 30px; 
-}
-
-button.small-squares:hover {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 
 button.big-square-color {
-  height: 25px; 
-  width: 25px; 
-  padding: 30px; 
-  margin-bottom:5px;
+  height: 25px;
+  width: 25px;
+  padding: 30px;
+  margin-bottom: 5px;
 }
 
 button.big-square-color:nth-of-type(1) {
@@ -214,7 +198,6 @@ button.big-square-color:nth-of-type(7) {
 button.big-square-color:nth-of-type(8) {
   background-color: blue;
 }
-
 
 .stroke {
   height: 35px;

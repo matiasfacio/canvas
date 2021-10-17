@@ -1,11 +1,29 @@
 let canvas = document.querySelector("canvas#pizarra");
-
+let secretCanvasActive = false;
 canvas.width = window.innerWidth * 0.65; /* 0.95 */
 canvas.height = window.innerHeight * 0.8; /* 0.80 */
 canvas.style.cssText =
-  "background: white; border: 3px black solid; border-radius: 10px";
+  "margin-top: 50px; background: white; border: 3px black solid; border-radius: 10px";
 
 let c = canvas.getContext("2d");
+c.lineJoin = "round";
+c.lineCap = "round";
+
+function SecretCanvasVisibility() {
+  /*  the secret canvas is the place where the line that define the circle will be drawn. These lines are guidelines to draw the cirlce
+  which will be drawn on the main canvas. This canvas needs to be display only when a circle will be drawn, but not be there otherwise.  */
+  if (secretCanvasActive) {
+    newCanvas.style.cssText = "top: 50px; left: 0; z-index: 99; display: block";
+  } else {
+    newCanvas.style.cssText = "top: 50px; left: 0; z-index: -1; display: none";
+  }
+}
+
+const newCanvas = document.getElementById("secretCanvas");
+newCanvas.height = canvas.height;
+newCanvas.width = canvas.width;
+const newCanvasContext = newCanvas.getContext("2d");
+SecretCanvasVisibility();
 
 let initialActiveColor = "black";
 let activeColor = initialActiveColor;
@@ -64,12 +82,16 @@ function clearAll() {
   c.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+function clearAllSecret() {
+  newCanvasContext.clearRect(0, 0, newCanvas.width, newCanvas.height);
+}
+
 /* ------------------- */
 
 // erase
 
-const eraseRubber = document.getElementById('erase');
-eraseRubber.addEventListener('click', startErase);
+const eraseRubber = document.getElementById("erase");
+eraseRubber.addEventListener("click", startErase);
 
 /* ------------------ */
 
@@ -115,24 +137,25 @@ elements.forEach((element) => {
   element.addEventListener("click", (e) => {
     switch (e.target.id) {
       case "triangle":
-        console.log("Triangle");
         element.classList.add("activeButton");
+        secretCanvasActive = false;
         startTriangle();
         break;
       case "manoLibre":
         element.classList.add("activeButton");
+        secretCanvasActive = false;
         startHandFree();
-        console.log("Manos libres");
         break;
       case "lineaRecta":
         element.classList.add("activeButton");
-        console.log("Linea Recta");
         startLine();
+        secretCanvasActive = false;
         break;
       case "circle":
         element.classList.add("activeButton");
+        secretCanvasActive = true;
+        SecretCanvasVisibility();
         startCircle();
-        console.log("Circle");
         break;
     }
   });
@@ -211,20 +234,13 @@ function drawLine(twoPointsArray) {
 
 function startCircle() {
   const twoPointsArray = [];
-  //   const newCanvasId = createCanvas();
-  const newCanvas = document.getElementById("secretCanvas");
-  newCanvas.height = canvas.height;
-  newCanvas.width = canvas.width;
-  newCanvas.style.cssText =
-    "top: 50px; left: 0; z-index: 99; visibility: visible";
-  const newCanvasContext = newCanvas.getContext("2d");
-
   const handleMouseMove = (e) => {
     if (twoPointsArray.length > 0) {
       newCanvasContext.clearRect(0, 0, innerWidth, innerHeight);
       newCanvasContext.beginPath();
       newCanvasContext.moveTo(twoPointsArray[0].x, twoPointsArray[0].y);
       newCanvasContext.lineTo(e.offsetX, e.offsetY);
+      newCanvasContext.strokeStyle = activeColor;
       newCanvasContext.stroke();
     }
   };
@@ -278,13 +294,16 @@ function drawCircle(radio, twoPointsArray) {
   } else {
     c.stroke();
   }
+  clearAllSecret();
+  secretCanvasActive = false;
+  SecretCanvasVisibility();
 }
 
 // drawing free hand
 
 function startHandFree() {
   const twoPointsArray = [];
-  let previousPoint={};
+  let previousPoint = {};
 
   const handleMove = (e) => {
     if (twoPointsArray.length > 0) {
@@ -324,47 +343,45 @@ function drawHandFree(e, previousPoint) {
 
 /* --------------------------------- */
 
-
 // erase function
 
-
 function startErase() {
-    const twoPointsArray = [];
-    let previousPoint={};
-  
-    const handleMove = (e) => {
-      if (twoPointsArray.length > 0) {
-        erase(e, previousPoint);
-        previousPoint = {
-          x: e.offsetX,
-          y: e.offsetY,
-        };
-      }
-    };
-  
-    const handleClick = (e) => {
-      twoPointsArray.push({ x: e.offsetX, y: e.offsetY });
+  const twoPointsArray = [];
+  let previousPoint = {};
+
+  const handleMove = (e) => {
+    if (twoPointsArray.length > 0) {
+      erase(e, previousPoint);
       previousPoint = {
         x: e.offsetX,
         y: e.offsetY,
       };
-      if (twoPointsArray.length === 2) {
-        canvas.removeEventListener("click", handleClick);
-        canvas.removeEventListener("mousemove", handleMove);
-        document.getElementById("erase").classList.remove("activeButton");
-      }
+    }
+  };
+
+  const handleClick = (e) => {
+    twoPointsArray.push({ x: e.offsetX, y: e.offsetY });
+    previousPoint = {
+      x: e.offsetX,
+      y: e.offsetY,
     };
-  
-    canvas.addEventListener("click", handleClick);
-    canvas.addEventListener("mousemove", handleMove);
-  }
-  
-  function erase(e, previousPoint) {
-    c.beginPath();
-    c.moveTo(previousPoint.x, previousPoint.y);
-    c.lineTo(e.offsetX, e.offsetY);
-    c.lineWidth = 5;
-    console.log(document.getElementById('pizarra').style.backgroundColor)
-    c.strokeStyle = document.getElementById('pizarra').style.backgroundColor;
-    c.stroke();
-  }
+    if (twoPointsArray.length === 2) {
+      canvas.removeEventListener("click", handleClick);
+      canvas.removeEventListener("mousemove", handleMove);
+      document.getElementById("erase").classList.remove("activeButton");
+    }
+  };
+
+  canvas.addEventListener("click", handleClick);
+  canvas.addEventListener("mousemove", handleMove);
+}
+
+function erase(e, previousPoint) {
+  c.beginPath();
+  c.moveTo(previousPoint.x, previousPoint.y);
+  c.lineTo(e.offsetX, e.offsetY);
+  c.lineWidth = 5;
+  console.log(document.getElementById("pizarra").style.backgroundColor);
+  c.strokeStyle = document.getElementById("pizarra").style.backgroundColor;
+  c.stroke();
+}
